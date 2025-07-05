@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./../styles/App.css";
-import List from "./List";
 
 const App = () => {
   const cityList = [
@@ -34,10 +33,17 @@ const App = () => {
     { name: "Tirupati", country: "India" },
   ];
 
-  return <div id="main">
-    {cityList.map((value,index)=><List key={index} name={value.name} country={value.country} />)}
-    
-  </div>;
+  const indianCities = cityList.filter(city => city.country === "India");
+
+  return (
+    <div id="main">
+      <ol>
+        {indianCities.map((city, index) => (
+          <li key={`location${index + 1}`}>{city.name}</li>
+        ))}
+      </ol>
+    </div>
+  );
 };
 
 export default App;
